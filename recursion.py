@@ -37,3 +37,27 @@ def sum(n):
     
 print sum(4)
 
+# Write a recursive function that computes and returns the sum of all elements in an array
+def find_sum(arr):
+  if len(arr) == 1:
+    return arr[0]
+  else:
+    num = arr.pop()
+    return num + find_sum(arr)
+  
+print find_sum([2,5,1,6])
+
+# Write a recursive function that finds and returns the minimum element in an array
+def find_min(arr):
+  if len(arr) == 1:
+    return arr[0]
+  else:
+    num = arr.pop()
+    min = find_min(arr)
+    if num < min:
+      return num
+    else:
+      return min
+      
+
+print find_min([2,5,3,6])
