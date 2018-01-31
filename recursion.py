@@ -23,3 +23,17 @@ def is_palindrome(word):
       return False
   
 print is_palindrome('tacocat')
+
+
+# Write a recursive function that computes the sum of all numbers from 1 to n, where n is given as parameter.
+# return the sum 1+ 2+ 3+ ...+ n
+def sum(n):
+  
+  if n < 1:
+    return 0
+  else:
+    return sum(n-1) + n
+    
+    
+print sum(4)
+
