@@ -12,3 +12,15 @@ def selection_sort(arr):
 
 
 print selection_sort([7,8,5,4,9,2])
+
+
+def insertion_sort(arr):
+  for i in range(1, len(arr)):
+    for curr in range(i, 0, -1):
+      if arr[curr] < arr[curr-1]:
+        arr.insert(curr-1, arr.pop(curr))
+    
+  return arr
+  
+print insertion_sort([3,2,6,1])
+
