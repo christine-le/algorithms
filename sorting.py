@@ -32,8 +32,6 @@ def insertion_sort(arr):
     return arr
   
 print "insertion sort: ", str(insertion_sort([3,2,6,1]))
-<<<<<<< HEAD
-=======
 
 # Algorithm:  Uses a divide and conquer method to continually divide each half of array
 # and sort.  Merge each sorted sub-arrays with each iteration.
@@ -98,68 +96,57 @@ def partition(arr, l, p):
 my_arr = [7,8,5,1,9,2,4]
 print "quick sort: ", str(quick_sort(my_arr, 0, len(my_arr)-1))
 
+######################################################################
 
-
-
-
->>>>>>> 5e38265e78457853a312b877a00830ddb8c2deaa
-
-# Algorithm:  Use a divide and conquer method to continually divide each half of array
-# and sort.  Merge each sorted sub-arrays with each iteration.
-def merge_sort(arr):
-    if len(arr) == 1:
-        return arr
-
-    new_array = []
-    half = len(arr)/2
-    arr1 = merge_sort(arr[0:half])
-    arr2 = merge_sort(arr[half:])
-
-    new_array = []
-    i =  j = 0
-    while i < len(arr1) or j < len(arr2):
-        if arr1[i] < arr2[j]:
-            new_array.append(arr1[i])
-            i += 1
-        else:
-            new_array.append(arr2[j])
-            j += 1
-
-        if i == len(arr1):
-            new_array = new_array + arr2[j:]
-            break
-        if j == len(arr2):
-            new_array = new_array + arr1[i:]
-            break
-
-    return new_array
+def bucketSort(arr):
+  buckets = [[], [], [], [], [], [], [], [], [], []]
+  
+  # insert into buckets
+  for i in arr:
+    if i < 10:
+      bucket = buckets[i]
+      bucket.append(i)
+    else:
+      bucket = buckets[i / 10]
+      bucket.append(i)
+      
+  # sort each bucket
+  sortedList = []
+  for bucket in buckets:
+    if len(bucket) > 1:
+      bucket = insertSort(bucket)
     
-    # return merge(arr1, arr2)
+    sortedList = sortedList + bucket
     
+  return sortedList
+  
+def insertSort(arr):
+  for i in range(1, len(arr)):
+    curr = i
+    val = arr[i]
 
-# def merge(arr1, arr2):
-#     new_array = []
-#     i =  j = 0
+    while val < arr[curr-1] and curr > 0:
+      arr[curr] = arr[curr-1]
+      curr -= 1
 
-#     while i < len(arr1) or j < len(arr2):
-        
-#         print 'comparing', str(arr1[i]), '<', str(arr2[j])
-#         if arr1[i] < arr2[j]:
-#             new_array.append(arr1[i])
-#             i += 1
-#         else:
-#             new_array.append(arr2[j])
-#             j += 1
+      arr[curr] = val
 
-#         if i == len(arr1):
-#             new_array = new_array + arr2[j:]
-#             break
-#         if j == len(arr2):
-#             new_array = new_array + arr1[i:]
-#             break
-
-#     return new_array
+  return arr
     
+print "bucket sort: ", bucketSort([12,25,54,31,60,78,45,33,40])
+######################################################################
+def bubbleSort(arr):
+  for i in range(len(arr)):
+    for j in range(len(arr) - i - 1):
+      if arr[j] > arr[j + 1]:
+        arr = swap(arr, j, j+1)
+  return arr
+  
+def swap(arr, i, j):
+  tmp = arr[i]
+  arr[i] = arr[j]
+  arr[j] = tmp
+  
+  return arr
 
-print "merge sort on [7,8,5,4,9,2,1,3]: \n", str(merge_sort([7,8,5,4,9,2,1,3]))
-# print "merge sort: \n", str(merge_sort([4,1,7,3]))
+print "bubble sort: ", bubbleSort([21,13,51,19,10,44])
